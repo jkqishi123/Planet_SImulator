@@ -1,4 +1,4 @@
 void setup()  {
- println("Hello"); 
+ println("Hi"); 
   println("School is fun");
 }
