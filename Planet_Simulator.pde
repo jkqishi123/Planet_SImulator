@@ -2,5 +2,4 @@ void setup()  {
  println("Hi"); 
   println("School is fun");
   println("hello");
-  println("wow");
-}
+  println("homework");
