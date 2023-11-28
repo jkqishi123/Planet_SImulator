@@ -9,7 +9,19 @@ class Weather {
   
   //Method
   void checkWeather() {
-    if (moistureLevel < 10 && temperature > 20) {
+    if (moistureLevel > 50 && temperature > 30) {
+      weather = "Thunder";
+      println(weather);
+    }
+    else if (moistureLevel > 60 && temperature > 0) {
+      weather = "Rainy";
+      println(weather);
+    }
+    else if (moistureLevel > 60 && temperature < 0) {
+      weather = "Snowy";
+      println(weather);
+    }
+    else if (moistureLevel < 20 && temperature > 20) {
       weather = "Sunny";
       println(weather);
     }
@@ -17,7 +29,6 @@ class Weather {
       weather = "Cloudy";
       println(weather);
     }
-    
   }
   
 }
