@@ -1,5 +1,6 @@
 int temp;
 int moisturelvl;
+float AtStrength;
 int rwat;
 int bwat;
 int gwat;
@@ -12,12 +13,16 @@ int gter;
 float icexsize;
 float iceysize;
 
+
+Atmosphere atmosphere;
+
 void setup() {
   size(1000, 600);
   
   //GUI CHANGEABLES PLACEHOLDERS
   temp = 0;
   moisturelvl = 0;
+  AtStrength = 1.7;
   
   
   rwat = 101;
@@ -30,6 +35,8 @@ void setup() {
   
   icexsize = 100;
   iceysize = 40;
+  
+  atmosphere = new Atmosphere();
 }
 
 void draw() {
@@ -52,7 +59,7 @@ void draw() {
     drawDryPlanet();
   }
   
-  
+  atmosphere.drawMe();
   
   
   //Planet: normal
