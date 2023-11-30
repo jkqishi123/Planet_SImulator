@@ -1,5 +1,6 @@
 int temp;
 int moisturelvl;
+float AtStrength, disasterChance;
 int rwat;
 int bwat;
 int gwat;
@@ -12,6 +13,16 @@ int gter;
 float icexsize;
 float iceysize;
 
+Atmosphere atmosphere;
+
+NaturalDisaster meteor = new NaturalDisaster("meteor", 20000, random(40, 60)),
+tornado = new NaturalDisaster("tornado", 1000, 50),
+earthquake = new NaturalDisaster("earthquake", 8000, 50),
+tsunami = new NaturalDisaster("tsunami", 5000, 50), //tsunami will occur if an earthquake occurs on water.
+hurricane = new NaturalDisaster("hurricane", 10000, 50);
+
+NaturalDisaster[] disasters = {meteor, tornado, tornado, tornado, tornado};//, earthquake, earthquake, earthquake, hurricane, hurricane}; //there are multiple of the same to increase chance of disaster occuring
+
 void setup() {
   size(1000, 600);
   Weather w = new Weather();
@@ -20,7 +31,8 @@ void setup() {
   //GUI CHANGEABLES PLACEHOLDERS
   temp = 20;
   moisturelvl = 0;
-  
+  AtStrength = 3.0;
+  disasterChance = 3;
   
   rwat = 101;
   bwat = 173;
@@ -32,6 +44,8 @@ void setup() {
   
   icexsize = 100;
   iceysize = 40;
+  
+  atmosphere = new Atmosphere();
 }
 
 void draw() {
@@ -55,8 +69,13 @@ void draw() {
     drawDryPlanet();
   }
   
-  
-  
+  atmosphere.drawMe();
+ 
+  chooseDisaster(disasterChance);
+  for(NaturalDisaster d : disasters) {
+    d.drawMe();
+    d.move();
+  }
   
   //Planet: normal
   //water or ocean area
