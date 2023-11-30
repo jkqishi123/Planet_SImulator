@@ -14,9 +14,11 @@ float iceysize;
 
 void setup() {
   size(1000, 600);
-  
+  Weather w = new Weather();
+  w.checkWeather();
+
   //GUI CHANGEABLES PLACEHOLDERS
-  temp = 0;
+  temp = 20;
   moisturelvl = 0;
   
   
@@ -37,6 +39,7 @@ void draw() {
   //TEST VALUES HERE
   if (temp == 20){
     drawBasePlanet();
+    
   }
   
   if (temp == 30) {
