@@ -1,7 +1,7 @@
 class Weather {
   //Variable
-  int moisturelvl = 70;
-  float temp = 70;
+  int moisturelvl = 30;
+  float temp = 20;
   int xPos;
   int yPos;
   String weather;
@@ -11,8 +11,8 @@ class Weather {
   Weather() {
     this.weather = "Rainy";
     //Change the symbol coodinate here
-    this.xPos = 300;
-    this.yPos = 300;
+    this.xPos = 650;
+    this.yPos = 100;
   }
   
   //Method
@@ -27,7 +27,7 @@ class Weather {
     else if (moisturelvl > 60 && temp < 0) {
       this.weather = "Snowy";
     }
-    else if (moisturelvl < 20 && temp > 20) {
+    else if (moisturelvl < 20 && temp > 0) {
       this.weather = "Sunny";
     }
     else if (moisturelvl > 30 && temp > 10) {
@@ -90,7 +90,7 @@ void drawWeather(Weather w) {
      line(w.xPos-45,w.yPos+20,w.xPos+45,w.yPos-20);
      line(w.xPos-35,w.yPos+35,w.xPos+35,w.yPos-35);
      line(w.xPos+20,w.yPos+45,w.xPos-20,w.yPos-45);
-     line(w.xPos-45,w.yPos-20,w.yPos+45,w.yPos+20);
+     line(w.xPos-45,w.yPos-20,w.xPos+45,w.yPos+20);
    }
    else if (w.weather == "Cloudy") {
      fill(220);

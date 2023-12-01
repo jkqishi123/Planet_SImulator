@@ -1,3 +1,5 @@
+import g4p_controls.*;
+
 int temp;
 int moisturelvl;
 float AtStrength, disasterChance;
@@ -22,10 +24,11 @@ tsunami = new NaturalDisaster("tsunami", 5000, 50), //tsunami will occur if an e
 hurricane = new NaturalDisaster("hurricane", 10000, 50);
 
 NaturalDisaster[] disasters = {meteor, tornado, tornado, tornado, tornado};//, earthquake, earthquake, earthquake, hurricane, hurricane}; //there are multiple of the same to increase chance of disaster occuring
-
+Weather w;
 void setup() {
   size(1000, 600);
-  Weather w = new Weather();
+  createGUI();
+  w = new Weather();
   w.checkWeather();
 
   //GUI CHANGEABLES PLACEHOLDERS
@@ -75,6 +78,8 @@ void draw() {
   for(NaturalDisaster d : disasters) {
     d.drawMe();
     d.move();
+    
+  drawWeather(w);
   }
   
   //Planet: normal
