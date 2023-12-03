@@ -56,10 +56,10 @@ void narrator(){
           n4 = "";
         }
    }
-   
+      reporterText();
   }
      
-     reporterText();
+  
  }
 
   

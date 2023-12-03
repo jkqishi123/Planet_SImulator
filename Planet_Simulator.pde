@@ -52,22 +52,64 @@ void setup() {
 void draw() {
   background(0);
   //TEST VALUES HERE
-  if (temp == 20){
-    drawBasePlanet();
+  //if (temp == 20){
+  //  drawBasePlanet();
+    
+  //}
+  
+  //if (temp == 30) {
+  //  drawHotPlanet();
+  //}
+
+  //if (temp == 0) {
+  //  drawColdPlanet();
+  //}
+  
+  //if (moisturelvl == 0){
+  //  drawDryPlanet();
+  //}
+  
+  //GUI TEMP TYPES
+  if (temp > 0 && temp < 30){
+  
+    if (moisturelvl < 30){
+      drawDryPlanet();
+    }
+    
+    if (moisturelvl > 60){
+      drawWateredPlanet();
+    }
+    
+    if (moisturelvl >= 30 && moisturelvl <= 60){
+      drawNormalPlanet();
+    }
     
   }
   
-  if (temp == 30) {
-    drawHotPlanet();
-  }
+  if (temp >= 30){
 
-  if (temp == 0) {
-    drawColdPlanet();
+    if (moisturelvl < 70){
+       drawHotPlanet();
+    }
+    
+    if (moisturelvl > 70){
+      drawNormalPlanet();
+    }
+    
   }
   
-  if (moisturelvl == 0){
-    drawDryPlanet();
+  if (temp <= 0){
+    
+     if (moisturelvl < 60){
+       drawColdPlanet();
+    }
+    
+    if (moisturelvl > 60){
+      drawWateredPlanet();
+    }
+    
   }
+
 
   drawAtmosphere();
  
@@ -78,5 +120,7 @@ void draw() {
   }  
   drawWeather(w);
   narrator();
+  
+
   
 }

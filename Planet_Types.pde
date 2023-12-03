@@ -27,9 +27,73 @@ void drawBasePlanet(){
   
   //ice area bottom
   ellipse(500, 460, icexsize, iceysize - 15);
+ 
   
 }
 
+void drawNormalPlanet(){
+  //reforms ice if melted.
+  if (icexsize < 100){
+    icexsize += 1.5;
+  }
+  
+  if (iceysize < 40){
+    iceysize += 1.5;
+  }
+  
+  
+  //terrain colour change
+  if (rter < 35){
+    rter += 1.5;
+  }
+  
+  if (rter > 35){
+    rter -= 1.5;
+  }
+  
+  if (bter < 82){
+    bter += 1.5;
+  }
+  if (bter > 82){
+    bter -= 1.5;
+  }
+  
+   if (gter < 29){
+    gter += 1.5;
+  }
+  if (gter > 29){
+    gter -= 1.5;
+  }
+  
+  
+  //water colour change
+  if (rwat < 101){
+    rwat += 1.5;
+  }
+  
+  if (rwat > 101){
+    rwat -= 1.5;
+  }
+  
+  if (bwat < 173){
+    bwat += 1.5;
+  }
+  if (bwat > 173){
+    bwat -= 1.5;
+  }
+  
+   if (gwat < 207){
+    gwat += 1.5;
+  }
+  if (gwat > 207){
+    gwat -= 1.5;
+  }
+  
+  
+  drawBasePlanet(); 
+  
+  
+}
 
 void drawColdPlanet(){
   //reforms ice if melted.
