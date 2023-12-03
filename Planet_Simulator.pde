@@ -15,15 +15,13 @@ int gter;
 float icexsize;
 float iceysize;
 
-Atmosphere atmosphere;
 
-NaturalDisaster meteor = new NaturalDisaster("meteor", 20000, random(40, 60)),
-tornado = new NaturalDisaster("tornado", 1000, 50),
-earthquake = new NaturalDisaster("earthquake", 8000, 50),
-tsunami = new NaturalDisaster("tsunami", 5000, 50), //tsunami will occur if an earthquake occurs on water.
-hurricane = new NaturalDisaster("hurricane", 10000, 50);
+NaturalDisaster meteor = new NaturalDisaster("meteor", 20000, random(40, 60), random(3, 5), 0),
+tornado = new NaturalDisaster("tornado", 1000, random(20,30), random(0.1, 0.5), round(random(6, 10))),
+earthquake = new NaturalDisaster("earthquake", 8000, 50, 0, round(random(4, 6))),
+hurricane = new NaturalDisaster("hurricane", 10000, random(40,50), random(0.1,0.2), round(random(6, 10)));
 
-NaturalDisaster[] disasters = {meteor, tornado, tornado, tornado, tornado};//, earthquake, earthquake, earthquake, hurricane, hurricane}; //there are multiple of the same to increase chance of disaster occuring
+NaturalDisaster[] disasters = {meteor, tornado, tornado, tornado, tornado, earthquake, earthquake, earthquake, hurricane, hurricane}; //there are multiple of the same to increase chance of disaster occuring
 Weather w;
 void setup() {
   size(1000, 600);
@@ -48,7 +46,6 @@ void setup() {
   icexsize = 100;
   iceysize = 40;
   
-  atmosphere = new Atmosphere();
 }
 
 void draw() {
@@ -71,17 +68,17 @@ void draw() {
   if (moisturelvl == 0){
     drawDryPlanet();
   }
-  
-  atmosphere.drawMe();
+
+  drawAtmosphere();
  
   chooseDisaster(disasterChance);
   for(NaturalDisaster d : disasters) {
     d.drawMe();
     d.move();
-    
+  }  
   drawWeather(w);
-  }
   
+
   //Planet: normal
   //water or ocean area
  
