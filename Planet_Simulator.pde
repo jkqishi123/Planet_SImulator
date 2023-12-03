@@ -2,7 +2,7 @@ import g4p_controls.*;
 
 int temp;
 int moisturelvl;
-float AtStrength, disasterChance;
+float AtStrength,disasterChance;
 int rwat;
 int bwat;
 int gwat;
@@ -23,6 +23,7 @@ hurricane = new NaturalDisaster("hurricane", 10000, random(40,50), random(0.1,0.
 
 NaturalDisaster[] disasters = {meteor, tornado, tornado, tornado, tornado, earthquake, earthquake, earthquake, hurricane, hurricane}; //there are multiple of the same to increase chance of disaster occuring
 Weather w;
+
 void setup() {
   size(1000, 600);
   createGUI();
@@ -32,8 +33,8 @@ void setup() {
   //GUI CHANGEABLES PLACEHOLDERS
   temp = 20;
   moisturelvl = 0;
-  AtStrength = 3.0;
-  disasterChance = 3;
+  AtStrength = 2.0;
+  disasterChance = 0;
   
   rwat = 101;
   bwat = 173;
@@ -60,7 +61,6 @@ void draw() {
     drawHotPlanet();
   }
 
-    
   if (temp == 0) {
     drawColdPlanet();
   }

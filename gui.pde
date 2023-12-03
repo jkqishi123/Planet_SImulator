@@ -19,19 +19,19 @@ synchronized public void win_draw2(PApplet appc, GWinData data) { //_CODE_:windo
 } //_CODE_:window1:583834:
 
 public void moistureLevelChange(GSlider source, GEvent event) { //_CODE_:moistureLevel:810801:
-  println("moistureLevel - GSlider >> GEvent." + event + " @ " + millis());
+  moisturelvl = moistureLevel.getValueI();
 } //_CODE_:moistureLevel:810801:
 
 public void tempChange(GSlider source, GEvent event) { //_CODE_:temperature:206955:
-  println("temperature - GSlider >> GEvent." + event + " @ " + millis());
+  temp = temperature.getValueI();
 } //_CODE_:temperature:206955:
 
-public void slider1_change1(GSlider source, GEvent event) { //_CODE_:slider1:792172:
-  println("slider1 - GSlider >> GEvent." + event + " @ " + millis());
-} //_CODE_:slider1:792172:
+public void disasterChanceLevel(GSlider source, GEvent event) { //_CODE_:disaster:792172:
+  disasterChance = disaster.getValueF();
+} //_CODE_:disaster:792172:
 
 public void atmoChange(GSlider source, GEvent event) { //_CODE_:atmosphere:814010:
-  println("atmosphere - GSlider >> GEvent." + event + " @ " + millis());
+  AtStrength = atmosphere.getValueF();
 } //_CODE_:atmosphere:814010:
 
 public void populationChange(GSlider source, GEvent event) { //_CODE_:population:801352:
@@ -47,55 +47,67 @@ public void createGUI(){
   G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
   G4P.setMouseOverEnabled(false);
   surface.setTitle("Sketch Window");
-  window1 = GWindow.getWindow(this, "Window title", 0, 0, 410, 210, JAVA2D);
+  window1 = GWindow.getWindow(this, "Window title", 0, 0, 410, 250, JAVA2D);
   window1.noLoop();
   window1.setActionOnClose(G4P.KEEP_OPEN);
   window1.addDrawHandler(this, "win_draw2");
-  moistureLevel = new GSlider(window1, 3, 31, 209, 40, 10.0);
-  moistureLevel.setLimits(50.0, 0.0, 100.0);
-  moistureLevel.setNumberFormat(G4P.DECIMAL, 2);
+  moistureLevel = new GSlider(window1, 3, 28, 209, 45, 10.0);
+  moistureLevel.setShowValue(true);
+  moistureLevel.setShowLimits(true);
+  moistureLevel.setLimits(50, 0, 100);
+  moistureLevel.setShowTicks(true);
+  moistureLevel.setNumberFormat(G4P.INTEGER, 0);
   moistureLevel.setLocalColorScheme(GCScheme.CYAN_SCHEME);
   moistureLevel.setOpaque(false);
   moistureLevel.addEventHandler(this, "moistureLevelChange");
-  label1 = new GLabel(window1, 5, 6, 103, 20);
+  label1 = new GLabel(window1, -1, 6, 103, 20);
   label1.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   label1.setText("Moisture Level");
   label1.setOpaque(false);
-  label2 = new GLabel(window1, 1, 73, 80, 20);
+  label2 = new GLabel(window1, 3, 76, 80, 20);
   label2.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   label2.setText("Temperature");
   label2.setOpaque(false);
-  temperature = new GSlider(window1, 3, 93, 210, 40, 10.0);
-  temperature.setLimits(10.0, -20.0, 40.0);
-  temperature.setNumberFormat(G4P.DECIMAL, 2);
+  temperature = new GSlider(window1, 2, 101, 210, 45, 10.0);
+  temperature.setShowValue(true);
+  temperature.setShowLimits(true);
+  temperature.setLimits(10, -20, 40);
+  temperature.setShowTicks(true);
+  temperature.setNumberFormat(G4P.INTEGER, 0);
   temperature.setLocalColorScheme(GCScheme.RED_SCHEME);
   temperature.setOpaque(false);
   temperature.addEventHandler(this, "tempChange");
-  label3 = new GLabel(window1, 5, 139, 122, 20);
+  label3 = new GLabel(window1, -2, 153, 122, 20);
   label3.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   label3.setText("Chance of Disaster");
   label3.setOpaque(false);
-  slider1 = new GSlider(window1, 4, 165, 210, 40, 10.0);
-  slider1.setLimits(25.0, 0.0, 50.0);
-  slider1.setNumberFormat(G4P.DECIMAL, 2);
-  slider1.setLocalColorScheme(GCScheme.GREEN_SCHEME);
-  slider1.setOpaque(false);
-  slider1.addEventHandler(this, "slider1_change1");
-  label4 = new GLabel(window1, 210, 7, 80, 20);
+  disaster = new GSlider(window1, 2, 170, 210, 45, 10.0);
+  disaster.setShowValue(true);
+  disaster.setShowLimits(true);
+  disaster.setLimits(0, 0, 100);
+  disaster.setShowTicks(true);
+  disaster.setNumberFormat(G4P.INTEGER, 0);
+  disaster.setLocalColorScheme(GCScheme.GREEN_SCHEME);
+  disaster.setOpaque(false);
+  disaster.addEventHandler(this, "disasterChanceLevel");
+  label4 = new GLabel(window1, 220, 19, 80, 25);
   label4.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   label4.setText("Atmospheric Strength");
   label4.setOpaque(false);
-  atmosphere = new GSlider(window1, 300, 34, 167, 100, 10.0);
+  atmosphere = new GSlider(window1, 312, 59, 167, 100, 10.0);
+  atmosphere.setShowValue(true);
+  atmosphere.setShowLimits(true);
   atmosphere.setRotation(PI/2, GControlMode.CORNER);
-  atmosphere.setLimits(1.0, 0.0, 5.0);
+  atmosphere.setLimits(2.0, 0.0, 5.0);
+  atmosphere.setShowTicks(true);
   atmosphere.setNumberFormat(G4P.DECIMAL, 2);
   atmosphere.setOpaque(false);
   atmosphere.addEventHandler(this, "atmoChange");
-  label5 = new GLabel(window1, 287, 9, 80, 20);
+  label5 = new GLabel(window1, 318, 28, 80, 20);
   label5.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   label5.setText("Population");
   label5.setOpaque(false);
-  population = new GSlider(window1, 363, 38, 167, 100, 10.0);
+  population = new GSlider(window1, 402, 57, 167, 100, 10.0);
   population.setRotation(PI/2, GControlMode.CORNER);
   population.setLimits(500.0, 0.0, 10000.0);
   population.setNumberFormat(G4P.DECIMAL, 2);
@@ -113,7 +125,7 @@ GLabel label1;
 GLabel label2; 
 GSlider temperature; 
 GLabel label3; 
-GSlider slider1; 
+GSlider disaster; 
 GLabel label4; 
 GSlider atmosphere; 
 GLabel label5; 

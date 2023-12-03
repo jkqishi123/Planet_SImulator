@@ -102,7 +102,7 @@ class NaturalDisaster{
          }
          if(dist-this.size/2<350/2){
            this.reset();
-           println("a meteor has hit");
+           
          }
          this.pos.add(this.vel);
       }
