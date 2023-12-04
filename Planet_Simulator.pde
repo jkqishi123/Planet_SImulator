@@ -11,6 +11,7 @@ int rter;
 int bter;
 int gter;
 
+
 //for the ice at the top and bottom
 float icexsize;
 float iceysize;
@@ -51,6 +52,9 @@ void setup() {
 
 void draw() {
   background(0);
+  //Star in background
+  drawStar();
+ 
   textSize(30);
   fill(255);
   text("Population: " + currPopulation + "000", 0, 30);

@@ -28,9 +28,14 @@ void drawBasePlanet(){
   //ice area bottom
   ellipse(500, 460, icexsize, iceysize - 15);
  
-  
 }
 
+void drawStar() { 
+  int star_number = 50;
+  fill(255);
+  for (int n = 0; n < star_number; n++)
+    circle(random(1,width),random(1,height),random(1,5));
+}
 void drawNormalPlanet(){
   //reforms ice if melted.
   if (icexsize < 100){
