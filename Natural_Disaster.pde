@@ -96,14 +96,15 @@ class NaturalDisaster{
          float dist = dist(this.pos.x, this.pos.y, width/2, height/2);
          if(dist<AtRadius){
            this.size -= 3; 
-           if(this.size <=0){
-             this.reset();
-           }
-         }
-         if(dist-this.size/2<350/2){
-           this.reset();
+           if(this.size <=0)
+             this.occuring=false;
            
          }
+         if(dist-this.size/2<350/2){
+            this.occuring = false;  
+            decreasePopulation(this);
+         }
+         
          this.pos.add(this.vel);
       }
       else if(this.name.equals("tornado") || this.name.equals("hurricane")){
@@ -114,17 +115,20 @@ class NaturalDisaster{
          }
          if(frameCount%60 ==0){
          this.time--;
+         decreasePopulation(this);
          }
          if(this.time ==0)
-           this.reset();
+           this.occuring = false;
          
          this.pos.add(this.vel);
       }
       else if(this.name.equals("earthquake")){
-        if(frameCount%60==0)
+        if(frameCount%60==0){
           this.time--;
+          decreasePopulation(this);
+        }
         if(this.time==0)
-          this.reset();
+          this.occuring = false;
         float offsetx = random(-3,3);
         float offsety = random(-3,3);
         this.offsetpos = new PVector(this.pos.x+offsetx, this.pos.y+offsety);
@@ -150,7 +154,7 @@ class NaturalDisaster{
       float randx = random(width/2-350/2, width/2+350/2);
       float randy = random(height/2-350/2, height/2+350/2);
       float dist = dist(randx, randy, width/2, height/2);
-      while(dist>350/2-60){
+      while(dist>350/2-30){
         randx = random(width/2-350/2, width/2+350/2);
         randy = random(height/2-350/2, height/2+350/2);
         dist = dist(randx, randy, width/2, height/2);
@@ -159,47 +163,40 @@ class NaturalDisaster{
     }
   }
   
-  void reset() {
-    if(this.name.equals("meteor")){
-      this.size = random(40, 60);
-    }
-    else if(this.name.equals("tornado")){
-      this.size = random(20,30);
-      this.maxTime = round(random(6, 10));
-    }
-    else if(this.name.equals("hurricane")){
-      this.size = random(40, 50);
-      this.maxTime = round(random(6, 10));
-    }
-    else{
-      this.maxTime = round(random(4,6)); 
-    }
-    this.vel = new PVector(0,0);
-    this.pos = new PVector(0,0);
-    this.occuring = false;
-    this.time = this.maxTime;
-  }
-  
-  
 }
 
 //helper funtions outside the class
 void chooseDisaster(float ch){
-  //boolean disasterStarted = false; //so that we have 1 disaster at a time
-  //for(NaturalDisaster d : disasters){
-  //  if(d.occuring)
-  //    disasterStarted = true;
-  //}
   
-  // if(!disasterStarted){
     int random = round(random(100)); //random chance of disaster occuring
     if(random < ch){
-      int randIndex = round(random(disasters.length-1)); //randomly chooses one of the natural disasters. (some have a higher chance of occuring)
-      if(!disasters[randIndex].occuring)
-          disasters[randIndex].startDisaster();
-      disasters[randIndex].occuring = true;
+      int randIndex = round(random(NatDisasters.length-1)); //randomly chooses one of the natural disasters. (some have a higher chance of occuring)
+      if(NatDisasters[randIndex].equals("meteor")){
+        NaturalDisaster meteor = new NaturalDisaster("meteor", 100000, random(40, 60), random(3, 5), 0);
+        meteor.occuring = true;
+        meteor.startDisaster();
+        occuringDisasters.add(meteor);
+      }
+      else if(NatDisasters[randIndex].equals("tornado")){
+        NaturalDisaster tornado = new NaturalDisaster("tornado", 2000, random(20,30), random(0.1, 0.5), round(random(6, 8)));
+        tornado.occuring = true;
+        tornado.startDisaster();
+        occuringDisasters.add(tornado);
+      }
+      else if(NatDisasters[randIndex].equals("hurricane")){
+        NaturalDisaster hurricane = new NaturalDisaster("hurricane", 10000, random(40,50), random(0.1,0.2), round(random(6, 8)));
+        hurricane.occuring = true;
+        hurricane.startDisaster();
+        occuringDisasters.add(hurricane);
+      }
+      else{
+        NaturalDisaster earthquake = new NaturalDisaster("earthquake", 7000, 50, 0, round(random(4, 5)));
+        earthquake.occuring = true;
+        earthquake.startDisaster();
+        occuringDisasters.add(earthquake);
+      }  
+
     }
- //}
 }
 
 void findDirection(NaturalDisaster d){

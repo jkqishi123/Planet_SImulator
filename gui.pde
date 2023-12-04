@@ -84,7 +84,7 @@ public void createGUI(){
   disaster = new GSlider(window1, 2, 170, 210, 45, 10.0);
   disaster.setShowValue(true);
   disaster.setShowLimits(true);
-  disaster.setLimits(0, 0, 100);
+  disaster.setLimits(1, 0, 100);
   disaster.setShowTicks(true);
   disaster.setNumberFormat(G4P.INTEGER, 0);
   disaster.setLocalColorScheme(GCScheme.GREEN_SCHEME);

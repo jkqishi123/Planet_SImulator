@@ -1,7 +1,5 @@
 class Weather {
   //Variable
-  int moisturelvl = 30;
-  float temp = 20;
   int xPos;
   int yPos;
   String weather;

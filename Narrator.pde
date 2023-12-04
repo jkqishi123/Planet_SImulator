@@ -5,7 +5,7 @@ String n4 = "";
 
 void narrator(){
   
- for(NaturalDisaster d : disasters) {
+ for(NaturalDisaster d : occuringDisasters) {
   drawReporter();
 
    if (d.occuring){
