@@ -1,5 +1,5 @@
 import g4p_controls.*;
-
+boolean running = true;
 int temp, currPopulation;
 int moisturelvl;
 float AtStrength,disasterChance;
@@ -11,6 +11,7 @@ int rter;
 int bter;
 int gter;
 
+
 //for the ice at the top and bottom
 float icexsize;
 float iceysize;
@@ -21,20 +22,15 @@ float AtRadius, numCircles;
 
 //there are multiple of the same to increase chance of disaster occuring
 String[] NatDisasters = {"meteor", "tornado", "tornado", "tornado", "tornado", "earthquake", "earthquake", "earthquake", "hurricane", "hurricane"}; 
-ArrayList<NaturalDisaster> occuringDisasters = new ArrayList();
+ArrayList<NaturalDisaster> occuringDisasters;
 
 void setup() {
   size(1000, 600);
+  surface.setLocation(430,100); //changes the location of the display window
   createGUI();
-  w = new Weather();
-  w.checkWeather();
-
-  //GUI CHANGEABLES PLACEHOLDERS
-  temp = 10;
-  moisturelvl = 50;
-  AtStrength = 2.0;
-  disasterChance = 1;
+ 
   currPopulation = 8000000; //8 million (three zeroes are added when printing the text to make it 8 billion)
+  setInitialValues();
   
   rwat = 101;
   bwat = 173;
@@ -49,8 +45,26 @@ void setup() {
   
 }
 
+void setInitialValues(){
+  w = new Weather();
+  w.checkWeather();
+  occuringDisasters = new ArrayList();
+  temp = 10;
+  moisturelvl = 50;
+  AtStrength = 2.0;
+  disasterChance = 1;
+  moistureLevel.setValue(moisturelvl);
+  temperature.setValue(temp);
+  disaster.setValue(disasterChance);
+  atmosphere.setValue(AtStrength);
+
+}
+
 void draw() {
   background(0);
+  //Star in background
+  //drawStar();
+  
   textSize(30);
   fill(255);
   text("Population: " + currPopulation + "000", 0, 30);

@@ -35,8 +35,25 @@ public void atmoChange(GSlider source, GEvent event) { //_CODE_:atmosphere:81401
 } //_CODE_:atmosphere:814010:
 
 public void populationChange(GSlider source, GEvent event) { //_CODE_:population:801352:
-  println("population - GSlider >> GEvent." + event + " @ " + millis());
+  setInitialValues();
+  currPopulation = population.getValueI();
 } //_CODE_:population:801352:
+
+public void pausePressed(GButton source, GEvent event) { //_CODE_:pause:604289:
+  if(running){
+    noLoop();
+    pause.setText("Resume");
+    pause.setLocalColorScheme(1);
+  }
+  else{
+    loop();
+    pause.setText("Pause");
+    pause.setLocalColorScheme(0);
+
+  }
+  
+  running = !running;
+} //_CODE_:pause:604289:
 
 
 
@@ -47,7 +64,7 @@ public void createGUI(){
   G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
   G4P.setMouseOverEnabled(false);
   surface.setTitle("Sketch Window");
-  window1 = GWindow.getWindow(this, "Window title", 0, 0, 410, 250, JAVA2D);
+  window1 = GWindow.getWindow(this, "Window title", 0, 100, 420, 300, JAVA2D);
   window1.noLoop();
   window1.setActionOnClose(G4P.KEEP_OPEN);
   window1.addDrawHandler(this, "win_draw2");
@@ -84,36 +101,45 @@ public void createGUI(){
   disaster = new GSlider(window1, 2, 170, 210, 45, 10.0);
   disaster.setShowValue(true);
   disaster.setShowLimits(true);
-  disaster.setLimits(1, 0, 100);
+  disaster.setLimits(1, 0, 10);
   disaster.setShowTicks(true);
   disaster.setNumberFormat(G4P.INTEGER, 0);
   disaster.setLocalColorScheme(GCScheme.GREEN_SCHEME);
   disaster.setOpaque(false);
   disaster.addEventHandler(this, "disasterChanceLevel");
-  label4 = new GLabel(window1, 220, 19, 80, 25);
+  label4 = new GLabel(window1, 220, 27, 80, 28);
   label4.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   label4.setText("Atmospheric Strength");
   label4.setOpaque(false);
   atmosphere = new GSlider(window1, 312, 59, 167, 100, 10.0);
   atmosphere.setShowValue(true);
   atmosphere.setShowLimits(true);
+  atmosphere.setTextOrientation(G4P.ORIENT_LEFT);
   atmosphere.setRotation(PI/2, GControlMode.CORNER);
   atmosphere.setLimits(2.0, 0.0, 5.0);
   atmosphere.setShowTicks(true);
   atmosphere.setNumberFormat(G4P.DECIMAL, 2);
   atmosphere.setOpaque(false);
   atmosphere.addEventHandler(this, "atmoChange");
-  label5 = new GLabel(window1, 318, 28, 80, 20);
+  label5 = new GLabel(window1, 318, 28, 80, 28);
   label5.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
-  label5.setText("Population");
+  label5.setText("Population (thousands)");
   label5.setOpaque(false);
-  population = new GSlider(window1, 402, 57, 167, 100, 10.0);
+  population = new GSlider(window1, 416, 57, 167, 114, 10.0);
+  population.setShowValue(true);
+  population.setShowLimits(true);
+  population.setTextOrientation(G4P.ORIENT_LEFT);
   population.setRotation(PI/2, GControlMode.CORNER);
-  population.setLimits(500.0, 0.0, 10000.0);
-  population.setNumberFormat(G4P.DECIMAL, 2);
+  population.setLimits(8000000, 10000, 8000000);
+  population.setShowTicks(true);
+  population.setNumberFormat(G4P.INTEGER, 0);
   population.setLocalColorScheme(GCScheme.GOLD_SCHEME);
   population.setOpaque(false);
   population.addEventHandler(this, "populationChange");
+  pause = new GButton(window1, 170, 250, 80, 30);
+  pause.setText("Pause");
+  pause.setLocalColorScheme(GCScheme.RED_SCHEME);
+  pause.addEventHandler(this, "pausePressed");
   window1.loop();
 }
 
@@ -130,3 +156,4 @@ GLabel label4;
 GSlider atmosphere; 
 GLabel label5; 
 GSlider population; 
+GButton pause; 

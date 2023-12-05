@@ -18,7 +18,9 @@ void drawAtmosphere() {
 }
 
 void decreasePopulation(NaturalDisaster d) {
- currPopulation -= d.damage/1000;
+    currPopulation -= d.damage/1000;
+    if(currPopulation<0)
+      currPopulation = 0;
 }
 
 void growPopulation(){
