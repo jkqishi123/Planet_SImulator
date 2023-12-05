@@ -2,7 +2,7 @@
 
 class NaturalDisaster {
   String name;
-  int damage, time, maxTime; //don't think I need max Time
+  int damage, time;
   PVector pos, vel, offsetpos;
   boolean occuring, exploding;
   float size, speed;
@@ -16,7 +16,6 @@ class NaturalDisaster {
     this.size = s;
     this.speed = sp;
     this.time = t;
-    this.maxTime = t;
     this.offsetpos = new PVector(0, 0);
     this.exploding = false;
   }
