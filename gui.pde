@@ -101,9 +101,9 @@ public void createGUI(){
   disaster = new GSlider(window1, 2, 170, 210, 45, 10.0);
   disaster.setShowValue(true);
   disaster.setShowLimits(true);
-  disaster.setLimits(1, 0, 10);
+  disaster.setLimits(1.0, 0.0, 10.0);
   disaster.setShowTicks(true);
-  disaster.setNumberFormat(G4P.INTEGER, 0);
+  disaster.setNumberFormat(G4P.DECIMAL, 0);
   disaster.setLocalColorScheme(GCScheme.GREEN_SCHEME);
   disaster.setOpaque(false);
   disaster.addEventHandler(this, "disasterChanceLevel");

@@ -30,11 +30,26 @@ void drawBasePlanet(){
  
 }
 
-void drawStar() { 
+void createStars() { 
   int star_number = 50;
+  stars = new PVector[star_number];
   fill(255);
-  for (int n = 0; n < star_number; n++)
-    circle(random(1,width),random(1,height),random(1,5));
+  for (int n = 0; n < stars.length; n++){
+    float randx = random(width);
+    float randy = random(height);
+    float randSize = random(1,5);
+    //circle(randx,randy,random(1,5));
+    stars[n] = new PVector(randx, randy, randSize);
+    
+  }
+}
+void drawStars() {
+  for(int i =0; i<stars.length;i++){
+    fill(255);
+    noStroke();
+    circle(stars[i].x, stars[i].y, stars[i].z); 
+  }
+  
 }
 void drawNormalPlanet(){
   //reforms ice if melted.

@@ -8,54 +8,56 @@ void narrator(){
  for(NaturalDisaster d : occuringDisasters) {
   drawReporter();
 
-   if (d.occuring){
-     if (d.name.equals("meteor")){ //to check if a natural disaster is occuring, you can use if(d.occuring)
-        float dist = dist(d.pos.x, d.pos.y, width/2, height/2);
-          if(dist<AtRadius+150){
+
+    if (d.name.equals("meteor")){ 
+      if(d.occuring){
+
             drawMeteor();
-            n1 = " meteor, ";
-            drawMeteor();
-          }
+            n1 = " meteor, ";    
+         
+      }
+        else
+           n1 = "";
           
-         else{
-            n1 = "";
-          }
-          
-           }
+    }
  
      
 
-   if (d.occuring){
     if (d.name.equals("tornado")){
-       n2 = " tornado ";
- 
-    }
-    else{
-          n2 = "";
-        }
-        
-   }
-   
-   if (d.occuring){
-    if (d.name.equals("earthquake")){
-       n3 = " earthquake ";
-
-    }
-    else{
-          n3 = "";
-        }
-   }
-   
-   if (d.occuring){
-    if (d.name.equals("hurricane")){
-       n4 = " hurricane ";
-   
-    }
+      if(d.occuring){
+        n2 = " tornado ";
+        drawTornado();
+      }
     
-    else{
-          n4 = "";
-        }
-   }
+      else
+        n2 = "";
+        
+    }
+        
+   
+   
+    if (d.name.equals("earthquake")){
+      if(d.occuring){
+        n3 = " earthquake ";
+        drawEarthquake(); 
+      }
+
+      else
+        n3 = "";
+        
+    }
+   
+    if (d.name.equals("hurricane")){
+      if(d.occuring){
+        n4 = " hurricane ";
+        drawHurricane(); 
+      }
+   
+      else
+        n4 = "";
+       
+    }
+   
       reporterText();
   }
      
@@ -69,4 +71,3 @@ void narrator(){
   
   
   
-}

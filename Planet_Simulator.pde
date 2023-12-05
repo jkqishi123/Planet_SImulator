@@ -16,7 +16,7 @@ int gter;
 float icexsize;
 float iceysize;
 
-
+PVector[] stars;
 Weather w;
 float AtRadius, numCircles;
 
@@ -28,7 +28,7 @@ void setup() {
   size(1000, 600);
   surface.setLocation(430,100); //changes the location of the display window
   createGUI();
- 
+  createStars();
   currPopulation = 8000000; //8 million (three zeroes are added when printing the text to make it 8 billion)
   setInitialValues();
   
@@ -63,11 +63,8 @@ void setInitialValues(){
 void draw() {
   background(0);
   //Star in background
-  drawStar();
- 
-  textSize(30);
-  fill(255);
-  text("Population: " + currPopulation + "000", 0, 30);
+  drawStars();
+  printPopulation();
   growPopulation();
   //TEST VALUES HERE
   //if (temp == 20){

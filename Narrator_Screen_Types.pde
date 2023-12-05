@@ -1,7 +1,7 @@
 void reporterText(){
    fill(0);
    textSize(9.5);
-   text("A new Natural Disaster has occurred:" +n1+n2+n3+n4,31,564);
+   text("A new Natural Disaster has occurred:\n" +n1+n2+n3+n4,31,564);
    
    fill(255, 0, 0);
    textSize(55);
@@ -12,11 +12,11 @@ void drawReporter(){
     noStroke();
     //news border
     fill(255, 105, 67);
-    rect(20, 440, 290, 140);
+    rect(20, 440, 290, 150);
     
     //news background
     fill(240, 205, 168);
-    rect(25, 445, 280, 128);
+    rect(25, 445, 280, 138);
      
     //reporter head: alien
     
@@ -42,7 +42,7 @@ void drawReporter(){
   
     //news text backing
     fill(255);
-    rect(25, 535, 280, 40);
+    rect(25, 535, 280, 50);
     fill(0, 0, 255);
     rect(25, 535, 280, 2);
     

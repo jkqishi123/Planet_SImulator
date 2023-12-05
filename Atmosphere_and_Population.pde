@@ -17,6 +17,14 @@ void drawAtmosphere() {
   
 }
 
+void printPopulation(){
+  
+  textSize(30);
+  fill(255);
+  text("Population: " + currPopulation + "000", 0, 30);
+  
+}
+
 void decreasePopulation(NaturalDisaster d) {
     currPopulation -= d.damage/1000;
     if(currPopulation<0)
