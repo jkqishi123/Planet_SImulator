@@ -19,16 +19,16 @@ class Weather {
     if (moisturelvl > 50 && temp > 30) {
      this.weather = "Thunder";
     }
-    else if (moisturelvl > 60 && temp > 0) {
+    else if (moisturelvl > 50 && temp > 0) {
      this. weather = "Rainy";
     }
-    else if (moisturelvl > 60 && temp < 0) {
+    else if (moisturelvl > 30 && temp < 0) {
       this.weather = "Snowy";
     }
-    else if (moisturelvl < 20 && temp > 0) {
+    else if (moisturelvl < 50 && temp > 20) {
       this.weather = "Sunny";
     }
-    else if (moisturelvl > 30 && temp > 10) {
+    else if (moisturelvl > 20 && temp > 0) {
       this.weather = "Cloudy";
     }
   }

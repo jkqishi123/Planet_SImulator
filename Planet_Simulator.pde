@@ -63,8 +63,8 @@ void setInitialValues(){
 void draw() {
   background(0);
   //Star in background
-  //drawStar();
-  
+  drawStar();
+ 
   textSize(30);
   fill(255);
   text("Population: " + currPopulation + "000", 0, 30);
