@@ -6,6 +6,7 @@ class Weather {
   float randomness;
   boolean occur = false;
   
+  //Constructors
   Weather() {
     this.weather = "Rainy";
     //Change the symbol coodinate here
@@ -15,7 +16,7 @@ class Weather {
   
   //Method
   void checkWeather() {
-
+    //Determine the weather based on moisturelvl and temp changed by user
     if (moisturelvl > 50 && temp > 30) {
      this.weather = "Thunder";
     }
@@ -35,6 +36,7 @@ class Weather {
 }  
 
 void drawWeather(Weather w) {
+  //Draw the coresponding weather icon
    if (w.weather == "Thunder") {
      fill(100);
      noStroke();

@@ -1,5 +1,3 @@
-
-
 void drawAtmosphere() {
   numCircles = AtStrength*10;
   //to create a gradient almost like the layers of the atmosphere
