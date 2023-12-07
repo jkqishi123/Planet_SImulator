@@ -1,5 +1,3 @@
-
-
 void drawAtmosphere() {
   numCircles = AtStrength*10;
   //to create a gradient almost like the layers of the atmosphere
@@ -36,32 +34,32 @@ void growPopulation(){
    if (temp > 0 && temp < 30){
   
     if (moisturelvl < 30)
-      growthPercent = 0.9998; //dry
+      growthPercent = 0.99998; //dry planet
     
     if (moisturelvl > 60)
-      growthPercent = 1.0002; //watered
+      growthPercent = 1.00002; //watered planet
     
     if (moisturelvl >= 30 && moisturelvl <= 60)
-      growthPercent = 1.0003; //normal
+      growthPercent = 1.00003; //normal planet
   }
   
   else if (temp >= 30){
 
     if (moisturelvl < 70)
-       growthPercent = 0.9999; //hot
+       growthPercent = 0.99999; //hot planet
     
     if (moisturelvl > 70)
-      growthPercent = 1.0003; //normal
+      growthPercent = 1.00003; //normal planet
   }
   
   else if (temp <= 0){
     
      if (moisturelvl < 60){
-       growthPercent = 0.9998; //cold
+       growthPercent = 0.99998; //cold planet
     }
     
     if (moisturelvl > 60){
-      growthPercent = 1.0002; //watered
+      growthPercent = 1.00002; //watered planet
     }
     
   }
@@ -70,19 +68,19 @@ void growPopulation(){
     currPopulation =0;
   
   else if(AtStrength<=1)
-    growthPercent -= 0.0002;
+    growthPercent -= 0.00002;
   
   else if(AtStrength<=2)
-    growthPercent -= 0.0001;
+    growthPercent -= 0.00001;
   
   else if(AtStrength<=3)
-    growthPercent += 0.0001;
+    growthPercent += 0.00001;
   
   else if(AtStrength<=4)
-    growthPercent += 0.00015;
+    growthPercent += 0.000015;
   
   else
-    growthPercent += 0.0002;
+    growthPercent += 0.00002;
   
   currPopulation *= growthPercent;
 }

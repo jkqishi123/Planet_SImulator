@@ -55,6 +55,13 @@ public void pausePressed(GButton source, GEvent event) { //_CODE_:pause:604289:
   running = !running;
 } //_CODE_:pause:604289:
 
+public void resetClicked(GButton source, GEvent event) { //_CODE_:resetButton:525790:
+    setInitialValues();
+    currPopulation = 8000000;
+    population.setValue(currPopulation);
+    
+} //_CODE_:resetButton:525790:
+
 
 
 // Create all the GUI controls. 
@@ -136,10 +143,14 @@ public void createGUI(){
   population.setLocalColorScheme(GCScheme.GOLD_SCHEME);
   population.setOpaque(false);
   population.addEventHandler(this, "populationChange");
-  pause = new GButton(window1, 170, 250, 80, 30);
+  pause = new GButton(window1, 110, 250, 80, 30);
   pause.setText("Pause");
   pause.setLocalColorScheme(GCScheme.RED_SCHEME);
   pause.addEventHandler(this, "pausePressed");
+  resetButton = new GButton(window1, 230, 250, 80, 30);
+  resetButton.setText("Reset");
+  resetButton.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
+  resetButton.addEventHandler(this, "resetClicked");
   window1.loop();
 }
 
@@ -157,3 +168,4 @@ GSlider atmosphere;
 GLabel label5; 
 GSlider population; 
 GButton pause; 
+GButton resetButton; 

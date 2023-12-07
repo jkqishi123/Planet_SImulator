@@ -20,7 +20,7 @@ PVector[] stars;
 Weather w;
 float AtRadius, numCircles;
 
-//there are multiple of the same to increase chance of disaster occuring
+//there are multiple of the same to increase chance of disaster occuring. meteor: 10%, tornado: 40%, earthquake: 30%, hurricane: 20%
 String[] NatDisasters = {"meteor", "tornado", "tornado", "tornado", "tornado", "earthquake", "earthquake", "earthquake", "hurricane", "hurricane"}; 
 ArrayList<NaturalDisaster> occuringDisasters;
 
@@ -28,7 +28,7 @@ void setup() {
   size(1000, 600);
   surface.setLocation(430,100); //changes the location of the display window
   createGUI();
-  createStars();
+  createStars(); //creating the background stars
   currPopulation = 8000000; //8 million (three zeroes are added when printing the text to make it 8 billion)
   setInitialValues();
   
@@ -53,6 +53,7 @@ void setInitialValues(){
   moisturelvl = 50;
   AtStrength = 2.0;
   disasterChance = 1;
+  
   moistureLevel.setValue(moisturelvl);
   temperature.setValue(temp);
   disaster.setValue(disasterChance);
@@ -62,7 +63,7 @@ void setInitialValues(){
 
 void draw() {
   background(0);
-  //Star in background
+  //drawing stars in background
   drawStars();
   printPopulation();
   growPopulation();
@@ -132,7 +133,7 @@ void draw() {
   for(NaturalDisaster d : occuringDisasters) {
     d.drawMe();
     d.move();
-  }  
+  }
   w.checkWeather();
   drawWeather(w);
   narrator();
