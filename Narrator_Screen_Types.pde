@@ -1,3 +1,4 @@
+//draws the narrator
 void reporterText(){
    fill(0);
    textSize(9.5);

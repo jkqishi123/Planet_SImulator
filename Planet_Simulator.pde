@@ -3,6 +3,8 @@ boolean running = true;
 int temp, currPopulation;
 int moisturelvl;
 float AtStrength,disasterChance;
+
+//Water and terrain integers
 int rwat;
 int bwat;
 int gwat;
@@ -32,19 +34,24 @@ void setup() {
   currPopulation = 8000000; //8 million (three zeroes are added when printing the text to make it 8 billion)
   setInitialValues();
   
+  //intial values of the base planet
+  //RGB of water
   rwat = 101;
   bwat = 173;
   gwat = 207;
   
+  //RGB of terrain
   rter = 35;
   bter = 82;
   gter = 29;
   
+  //Intial ice x and y sizes
   icexsize = 100;
   iceysize = 40;
   
 }
 
+// Setting the intial values
 void setInitialValues(){
   w = new Weather();
   w.checkWeather();
@@ -65,27 +72,15 @@ void draw() {
   background(0);
   //drawing stars in background
   drawStars();
+  
+  //Population 
   printPopulation();
   growPopulation();
-  //TEST VALUES HERE
-  //if (temp == 20){
-  //  drawBasePlanet();
-    
-  //}
   
-  //if (temp == 30) {
-  //  drawHotPlanet();
-  //}
-
-  //if (temp == 0) {
-  //  drawColdPlanet();
-  //}
-  
-  //if (moisturelvl == 0){
-  //  drawDryPlanet();
-  //}
   
   //GUI TEMP TYPES
+  
+  //For normal planet...
   if (temp > 0 && temp < 30){
   
     if (moisturelvl < 30){
@@ -102,40 +97,53 @@ void draw() {
     
   }
   
+  
+  //For hot planet...
   if (temp >= 30){
 
+    //if moisture is more than 70, the hot planet will be drawn
     if (moisturelvl < 70){
        drawHotPlanet();
     }
     
+    //if moisture is less than 70, the normal planet will be drawn
     if (moisturelvl > 70){
       drawNormalPlanet();
     }
     
   }
   
+  //for cold planet...
   if (temp <= 0){
     
+    //if moisture is less than 60, the cold planet will be drawn
      if (moisturelvl < 60){
        drawColdPlanet();
     }
     
+    //if moisture is more than 60, the watered planet will be drawn
     if (moisturelvl > 60){
       drawWateredPlanet();
     }
     
   }
 
-
+  // drawing the atmosphere...
   drawAtmosphere();
  
+ // Selects a natural disaster and draws it.
   chooseDisaster(disasterChance);
   for(NaturalDisaster d : occuringDisasters) {
     d.drawMe();
     d.move();
-  }
+
+  }  
+  
+  //Weather
   w.checkWeather();
   drawWeather(w);
+  
+  //Narrator
   narrator();
   
 

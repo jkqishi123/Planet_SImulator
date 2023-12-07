@@ -1,3 +1,5 @@
+//draws the different types of planets with their specific colours and ice sizes.
+
 void drawBasePlanet(){
   //Planet: normal
   //water or ocean area
@@ -30,6 +32,7 @@ void drawBasePlanet(){
  
 }
 
+//Star creation
 void createStars() { 
   int star_number = 50;
   stars = new PVector[star_number];
